@@ -10,31 +10,31 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/student")
+@RequestMapping("api/v1/students")
 public class StudentController {
 
     private final StudentService studentService;
 
-    @PostMapping("/save")
+    @PostMapping
     public Student save(@RequestBody Student student){
         return studentService.saveStudent(student);
     }
-    @GetMapping("/")
+    @GetMapping
     public List<Student> getStudents(){
         return studentService.getStudents();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Optional<Student> getStudent(@PathVariable Long id){
         return studentService.getStudent(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public Student updateStudent(@RequestBody Student student, @PathVariable Long id){
         return studentService.updateStudent(student, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public String deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
         return "successfully deleted";
